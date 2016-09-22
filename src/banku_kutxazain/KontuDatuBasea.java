@@ -11,8 +11,8 @@ public final class KontuDatuBasea {
     private Connection konekzioa;
     private Statement sententzia;
         
-    public KontuDatuBasea() throws ClassNotFoundException{
-        try{
+    public KontuDatuBasea() throws ClassNotFoundException {
+        try {
             urla = System.getProperty("user.dir") + File.separator + "bankua.db";
             dba = "jdbc:sqlite://"+ urla ;
             Class.forName("org.sqlite.JDBC");
@@ -20,12 +20,12 @@ public final class KontuDatuBasea {
             sententzia = konekzioa.createStatement();
             sortuTaulak();
 	}
-	catch (SQLException anException){
-            while (anException != null){
+    	catch (SQLException anException) {
+            while (anException != null) {
                 System.out.println("SQL Exception:  " + anException.getMessage());
                 anException = anException.getNextException();
             }
-	}
+    	}
     }
 
     public void sortuTaulak() {
@@ -53,8 +53,8 @@ public final class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         }
-
     }
+
     @Override
     public void finalize() {
         try {
@@ -71,15 +71,19 @@ public final class KontuDatuBasea {
             anException.printStackTrace();
         }
     }
+
     public Connection getKonekzioa() {
         return konekzioa;
     }
+
     public Statement getSententzia() {
         return sententzia;
     }  
+
     public String getUrl() {
         return urla;
     }
+
     public void sartuTransakzioa(int transakzioZenbakiBat, int kontuZenbakiBat, java.util.Date dataBat, double kantitateBat, String motaBat) {
         // Deklarazioak
         String sql;
@@ -103,12 +107,14 @@ public final class KontuDatuBasea {
             anException.printStackTrace();
         }
     }
+
     public static KontuDatuBasea instantzia() throws ClassNotFoundException {
             if (instantzia == null) {
                 instantzia = new KontuDatuBasea();
             }
             return instantzia;
     }
+
     public HashMap irakurriKontuak() {
         // Deklarazioak
         String query = "select * from Kontua";
@@ -148,12 +154,15 @@ public final class KontuDatuBasea {
             return accounts;
         }
     }
+
     public void setKonekzioa(Connection konekzioBerria) {
             konekzioa = konekzioBerria;
     }
+
     public void setSententzia(Statement sententziBerria) {
             sententzia = sententziBerria;
     }
+
     public void setUrl(String urlBerria) {
             urla = urlBerria;
     }
@@ -167,15 +176,13 @@ public final class KontuDatuBasea {
             // SQL exekutatu
             resultSet = sententzia.executeQuery(query);
             //	Resultset-eko errenkada eta zutabe guztiak kapturatu
-            while (resultSet.next())
-            {     
+            while (resultSet.next()) {     
                     transakzioZenbakia = resultSet.getInt("Zenbat");		
             }
             resultSet.close();
         }
         catch (SQLException anException) {
-            while (anException != null)
-            {
+            while (anException != null) {
                 System.out.println("SQL Exception:  " + anException.getMessage());
                 anException = anException.getNextException();
             }
