@@ -54,7 +54,6 @@ public class NirePanela extends JPanel implements ActionListener {
             pinZenbakia = Integer.parseInt(new String((testuEremuaPinZenbakia.getPassword())));
             // Modeloa sartu 
             bezero = kutxazaina.bezeroaLogin(kontuZenbakia, pinZenbakia);
-            System.out.println("looool");
             // Erroreak egiaztatu
             if (bezero) {
                 // Botoiak eta testu eremuak gaitu
@@ -70,10 +69,24 @@ public class NirePanela extends JPanel implements ActionListener {
                 
                 listaBezeroKontuak.setModel(new DefaultComboBoxModel(KontuDatuBasea.instantzia().kontsultatuKontuak(kontuZenbakia).toArray()));
                 
+                kontua = KontuDatuBasea.instantzia().kontsultatuKontua((int)listaBezeroKontuak.getSelectedItem());
+                kutxazaina.setKontua(kontua);
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Message", "Title", JOptionPane.WARNING_MESSAGE);
             }
         }
+        
+        if(event.getSource() == listaBezeroKontuak) {
+            kontua = KontuDatuBasea.instantzia().kontsultatuKontua((int)listaBezeroKontuak.getSelectedItem());
+            kutxazaina.setKontua(kontua);
+            
+            testuEremuaSaldoa.setText("");
+            testuEremuaGordailua.setText("");
+            testuEremuaDiruAteratzea.setText("");
+            testuEremuaSaldoBerria.setText("");
+        }
+        
         if (event.getSource() == botoiaKontsulta) {
             // Modeloa sartu 
             kutxazaina.sartuKontsulta();
@@ -191,6 +204,7 @@ public class NirePanela extends JPanel implements ActionListener {
         
         listaBezeroKontuak = new JComboBox();
         this.add(listaBezeroKontuak);
+        listaBezeroKontuak.addActionListener(this);
         
         this.add(new JLabel("                 "));
         

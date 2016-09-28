@@ -138,6 +138,32 @@ public class KontuDatuBasea {
         
         return kontuak;
     }
+    
+    public Kontua kontsultatuKontua(int pId) {
+        Kontua kontua =  null;
+        String query = "Select * from Kontua where Kontu_Zenbakia="+pId+"";
+        ResultSet resultSet;  
+        
+        try {
+            // SQL exekutatu
+            resultSet = sententzia.executeQuery(query);          
+            //	Resultset-eko errenkada eta zutabe guztiak kapturatu
+            while (resultSet.next()) {
+                double saldoZaharra = Double.parseDouble(resultSet.getString(2));
+                kontua = new Kontua(pId, saldoZaharra);
+            }
+            resultSet.close();
+        } catch (SQLException anException) {
+            while (anException != null) {
+                System.out.println("SQL Exception:  " + anException.getMessage());
+                anException = anException.getNextException();
+            }
+        } catch (java.lang.Exception anException) {
+            anException.printStackTrace();
+        }
+        
+        return kontua;
+    }
 
     public void setKonekzioa(Connection konekzioBerria) {
         konekzioa = konekzioBerria;
