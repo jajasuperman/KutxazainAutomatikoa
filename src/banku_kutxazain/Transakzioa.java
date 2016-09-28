@@ -1,62 +1,61 @@
 package banku_kutxazain;
 
 // Class izena: 	banku_kutxazain.Transakzioa.java
-// Function:		Transakzioaren domeinu abstraktua 
-
+// Function:	Transakzioaren domeinu abstraktua 
 import java.util.Date;
 
 public abstract class Transakzioa {
-	private Date data;
-	private int transakzioZenbakia;
-	private static int azkenTransakzioarenZenbakia = 30000;
-	private int kontuZenbakia;
-	
-	static public void Transkazioa() throws ClassNotFoundException {
-		azkenTransakzioarenZenbakia = KontuDatuBasea.instantzia().irakurriHasierakoTransakzioZenbakia();
-	}
-	  
-	public double kantitatea() {
-		return 0.0;
-	}
 
-	public int getKontuZenbakia() {
-		return kontuZenbakia;
-	}
+    private Date data;
+    private int transakzioZenbakia;
+    private static int azkenTransakzioarenZenbakia = 30000;
+    private int kontuZenbakia;
 
-	public Date getData() {
-		return data;
-	}
+    static public void Transkazioa() {
+        azkenTransakzioarenZenbakia = KontuDatuBasea.instantzia().irakurriHasierakoTransakzioZenbakia();
+    }
 
-	public static int getAzkenTransakzioarenZenbakia() {
-		return azkenTransakzioarenZenbakia;
-	}
+    public double kantitatea() {
+        return 0.0;
+    }
 
-	public int getTransakzioZenbakia() {
-		return transakzioZenbakia;
-	}
+    public int getKontuZenbakia() {
+        return kontuZenbakia;
+    }
 
-	public void setKontuZenbakia(int KontuZenbakiBerria) {
-		kontuZenbakia = KontuZenbakiBerria;
-	}
+    public Date getData() {
+        return data;
+    }
 
-	public void setData(Date dataBerria) {
-		this.data = dataBerria;
-	}
+    public static int getAzkenTransakzioarenZenbakia() {
+        return azkenTransakzioarenZenbakia;
+    }
 
-	public static void setAzkenTransakzioarenZenbakia(int azkenTransakzioarenZenbakiBerria) {
-		azkenTransakzioarenZenbakia = azkenTransakzioarenZenbakiBerria;
-	}
+    public int getTransakzioZenbakia() {
+        return transakzioZenbakia;
+    }
 
-	public void setTransakzioZenbakia(int transakzioZenbakiBerria) {
-		this.transakzioZenbakia = transakzioZenbakiBerria;
-	}
+    public void setKontuZenbakia(int KontuZenbakiBerria) {
+        kontuZenbakia = KontuZenbakiBerria;
+    }
 
-	public String toString() {
-		try {
-			return ObjetuIkuskatzailea.toString(this);
-		}
-		catch (Exception exception) {
-			return "errorea To String -n";
-		}
-	}
+    public void setData(Date dataBerria) {
+        this.data = dataBerria;
+    }
+
+    public static void setAzkenTransakzioarenZenbakia(int azkenTransakzioarenZenbakiBerria) {
+        azkenTransakzioarenZenbakia = azkenTransakzioarenZenbakiBerria;
+    }
+
+    public void setTransakzioZenbakia(int transakzioZenbakiBerria) {
+        this.transakzioZenbakia = transakzioZenbakiBerria;
+    }
+
+    public String toString() {
+        try {
+            return ObjetuIkuskatzailea.toString(this);
+        } catch (Exception exception) {
+            return "errorea To String -n";
+        }
+    }
 }
