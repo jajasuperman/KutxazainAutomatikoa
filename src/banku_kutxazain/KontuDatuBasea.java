@@ -164,6 +164,84 @@ public class KontuDatuBasea {
         
         return kontua;
     }
+    
+    public ArrayList<String> kontsultatuHiriak(){
+        ArrayList<String> hiriak = new ArrayList<>();
+        String query = "Select * from Hiria";
+        ResultSet resultSet;  
+        
+        try {
+            // SQL exekutatu
+            resultSet = sententzia.executeQuery(query);          
+            //	Resultset-eko errenkada eta zutabe guztiak kapturatu
+            while (resultSet.next()) {
+                String hiriIzena = resultSet.getString(1);
+                hiriak.add(hiriIzena);
+            }
+            resultSet.close();
+        } catch (SQLException anException) {
+            while (anException != null) {
+                System.out.println("SQL Exception:  " + anException.getMessage());
+                anException = anException.getNextException();
+            }
+        } catch (java.lang.Exception anException) {
+            anException.printStackTrace();
+        }
+        
+        return hiriak;
+    }    
+    
+    public ArrayList<String> kontsultatuZinemak(String pHiria){
+        ArrayList<String> zinemak = new ArrayList<>();
+        String query = "Select * from Zinema where HiriaIzena='"+pHiria+"'";
+        ResultSet resultSet;  
+        
+        try {
+            // SQL exekutatu
+            resultSet = sententzia.executeQuery(query);          
+            //	Resultset-eko errenkada eta zutabe guztiak kapturatu
+            while (resultSet.next()) {
+                String zinemaIzena = resultSet.getString(1);
+                zinemak.add(zinemaIzena);
+            }
+            resultSet.close();
+        } catch (SQLException anException) {
+            while (anException != null) {
+                System.out.println("SQL Exception:  " + anException.getMessage());
+                anException = anException.getNextException();
+            }
+        } catch (java.lang.Exception anException) {
+            anException.printStackTrace();
+        }
+        
+        return zinemak;
+    }   
+    
+    public ArrayList<String> kontsultatuPelikulak(String pHiria, String pZinema){
+        ArrayList<String> pelikulak = new ArrayList<>();
+        String query = "Select * from Zinema where HiriaIzena='"+pHiria+"' and ZinemaIzena='"+pZinema+"'";
+        ResultSet resultSet;  
+        
+        try {
+            // SQL exekutatu
+            resultSet = sententzia.executeQuery(query);          
+            //	Resultset-eko errenkada eta zutabe guztiak kapturatu
+            while (resultSet.next()) {
+                String pelikulaIzena = resultSet.getString(1);
+                pelikulak.add(pelikulaIzena);
+            }
+            resultSet.close();
+        } catch (SQLException anException) {
+            while (anException != null) {
+                System.out.println("SQL Exception:  " + anException.getMessage());
+                anException = anException.getNextException();
+            }
+        } catch (java.lang.Exception anException) {
+            anException.printStackTrace();
+        }
+        
+        return pelikulak;
+    }    
 
     public void setKonekzioa(Connection konekzioBerria) {
         konekzioa = konekzioBerria;

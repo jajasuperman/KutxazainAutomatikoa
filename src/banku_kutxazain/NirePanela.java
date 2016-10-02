@@ -4,9 +4,8 @@ package banku_kutxazain;
 // Function:	Arkitekturaren aurkezpen maila
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 import java.text.*;
-import java.awt.Dimension;
+import javax.swing.*;
 
 public class NirePanela extends JPanel implements ActionListener {
     
@@ -32,7 +31,7 @@ public class NirePanela extends JPanel implements ActionListener {
         numberFormat = NumberFormat.getCurrencyInstance();
         // Leihoak doitu
         this.setFont(new Font("Arial", Font.PLAIN, 12));
-        this.setBackground(Color.lightGray);
+        this.setBackground(new Color(144, 202, 249));
         this.setLayout(new GridLayout(7, 3, 25, 25));
         this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
         // Kontrolak hasieratu
@@ -45,6 +44,7 @@ public class NirePanela extends JPanel implements ActionListener {
 
     }
 
+    @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == botoiaSartuTxartela) {
             // Deklarazioak
