@@ -25,7 +25,6 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
     }
 
@@ -39,7 +38,6 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (Exception anException) {
-            anException.printStackTrace();
         }
     }
 
@@ -73,7 +71,6 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
     }
 
@@ -86,19 +83,19 @@ public class KontuDatuBasea {
 
     public boolean kontsultatuBezeroa(int pId, int pPin) {
         // Deklarazioak
-        String query = "Select * from Bezeroa where Id="+pId+"";
-        ResultSet resultSet;    
+        String query = "Select * from Bezeroa where Id=" + pId + "";
+        ResultSet resultSet;
         boolean login = false;
         try {
             // SQL exekutatu
-            resultSet = sententzia.executeQuery(query);          
+            resultSet = sententzia.executeQuery(query);
             //	Resultset-eko errenkada eta zutabe guztiak kapturatu
             while (resultSet.next()) {
                 int pinZenbakia = Integer.parseInt(resultSet.getString(5));
                 System.out.println("Bezeroa: IdZenbakia = " + pId + " | " + "pinZenbakia = " + pinZenbakia + "");
-                if(pPin == pinZenbakia) {                    
+                if (pPin == pinZenbakia) {
                     login = true;
-                }                   
+                }
             }
             resultSet.close();
         } catch (SQLException anException) {
@@ -107,19 +104,18 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
         return login;
     }
-    
-    public ArrayList<Integer> kontsultatuKontuak(int pId){
-        ArrayList<Integer> kontuak = new ArrayList<Integer>();
-        String query = "Select * from Kont_Bez where BezeroId="+pId+"";
-        ResultSet resultSet;  
-        
+
+    public ArrayList<Integer> kontsultatuKontuak(int pId) {
+        ArrayList<Integer> kontuak = new ArrayList<>();
+        String query = "Select * from Kont_Bez where BezeroId=" + pId + "";
+        ResultSet resultSet;
+
         try {
             // SQL exekutatu
-            resultSet = sententzia.executeQuery(query);          
+            resultSet = sententzia.executeQuery(query);
             //	Resultset-eko errenkada eta zutabe guztiak kapturatu
             while (resultSet.next()) {
                 int kontuZenbakia = Integer.parseInt(resultSet.getString(1));
@@ -133,20 +129,19 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
-        
+
         return kontuak;
     }
-    
+
     public Kontua kontsultatuKontua(int pId) {
-        Kontua kontua =  null;
-        String query = "Select * from Kontua where Kontu_Zenbakia="+pId+"";
-        ResultSet resultSet;  
-        
+        Kontua kontua = null;
+        String query = "Select * from Kontua where Kontu_Zenbakia=" + pId + "";
+        ResultSet resultSet;
+
         try {
             // SQL exekutatu
-            resultSet = sententzia.executeQuery(query);          
+            resultSet = sententzia.executeQuery(query);
             //	Resultset-eko errenkada eta zutabe guztiak kapturatu
             while (resultSet.next()) {
                 double saldoZaharra = Double.parseDouble(resultSet.getString(2));
@@ -159,20 +154,19 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
-        
+
         return kontua;
     }
-    
-    public ArrayList<String> kontsultatuHiriak(){
+
+    public ArrayList<String> kontsultatuHiriak() {
         ArrayList<String> hiriak = new ArrayList<>();
         String query = "Select * from Hiria";
-        ResultSet resultSet;  
-        
+        ResultSet resultSet;
+
         try {
             // SQL exekutatu
-            resultSet = sententzia.executeQuery(query);          
+            resultSet = sententzia.executeQuery(query);
             //	Resultset-eko errenkada eta zutabe guztiak kapturatu
             while (resultSet.next()) {
                 String hiriIzena = resultSet.getString(1);
@@ -185,20 +179,19 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
-        
+
         return hiriak;
-    }    
-    
-    public ArrayList<String> kontsultatuZinemak(String pHiria){
+    }
+
+    public ArrayList<String> kontsultatuZinemak(String pHiria) {
         ArrayList<String> zinemak = new ArrayList<>();
-        String query = "Select * from Zinema where HiriaIzena='"+pHiria+"'";
-        ResultSet resultSet;  
-        
+        String query = "Select * from Zinema where HiriaIzena='" + pHiria + "'";
+        ResultSet resultSet;
+
         try {
             // SQL exekutatu
-            resultSet = sententzia.executeQuery(query);          
+            resultSet = sententzia.executeQuery(query);
             //	Resultset-eko errenkada eta zutabe guztiak kapturatu
             while (resultSet.next()) {
                 String zinemaIzena = resultSet.getString(1);
@@ -211,20 +204,19 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
-        
+
         return zinemak;
-    }   
-    
-    public ArrayList<String> kontsultatuPelikulak(String pHiria, String pZinema){
+    }
+
+    public ArrayList<String> kontsultatuPelikulak(String pHiria, String pZinema) {
         ArrayList<String> pelikulak = new ArrayList<>();
-        String query = "Select * from Zinema where HiriaIzena='"+pHiria+"' and ZinemaIzena='"+pZinema+"'";
-        ResultSet resultSet;  
-        
+        String query = "Select * from Pelikula where HiriaIzena='" + pHiria + "' and ZinemaIzena='" + pZinema + "'";
+        ResultSet resultSet;
+
         try {
             // SQL exekutatu
-            resultSet = sententzia.executeQuery(query);          
+            resultSet = sententzia.executeQuery(query);
             //	Resultset-eko errenkada eta zutabe guztiak kapturatu
             while (resultSet.next()) {
                 String pelikulaIzena = resultSet.getString(1);
@@ -237,11 +229,35 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         }
-        
+
         return pelikulak;
-    }    
+    }
+    
+        public ArrayList<String> kontsultatuOrduak(String pHiria, String pZinema, String pPelikula, String pEguna) {
+        ArrayList<String> pelikulak = new ArrayList<>();
+        String query = "Select Ordua from Egunak where HiriaIzena='" + pHiria + "' and ZinemaIzena='" + pZinema + "' and PelikulaIzena='" + pPelikula + "' and Eguna='" + pEguna + "'";
+        ResultSet resultSet;
+
+        try {
+            // SQL exekutatu
+            resultSet = sententzia.executeQuery(query);
+            //	Resultset-eko errenkada eta zutabe guztiak kapturatu
+            while (resultSet.next()) {
+                String pelikulaIzena = resultSet.getString(1);
+                pelikulak.add(pelikulaIzena);
+            }
+            resultSet.close();
+        } catch (SQLException anException) {
+            while (anException != null) {
+                System.out.println("SQL Exception:  " + anException.getMessage());
+                anException = anException.getNextException();
+            }
+        } catch (java.lang.Exception anException) {
+        }
+
+        return pelikulak;
+    }
 
     public void setKonekzioa(Connection konekzioBerria) {
         konekzioa = konekzioBerria;
@@ -274,7 +290,6 @@ public class KontuDatuBasea {
                 anException = anException.getNextException();
             }
         } catch (java.lang.Exception anException) {
-            anException.printStackTrace();
         } finally {
             if (transakzioZenbakia == 0) {
                 transakzioZenbakia = 30000;

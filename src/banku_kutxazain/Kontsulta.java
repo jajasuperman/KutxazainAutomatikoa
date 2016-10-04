@@ -10,16 +10,18 @@ public class Kontsulta extends Transakzioa {
         //  Kalkulatu transakzio zenbakia	
         temp = KontuDatuBasea.instantzia().irakurriHasierakoTransakzioZenbakia();
         temp++;
-        this.setAzkenTransakzioarenZenbakia(temp);
+        Kontsulta.setAzkenTransakzioarenZenbakia(temp);
         //  Idatzi
         this.setTransakzioZenbakia(temp);
         this.setData(new Date());
     }
 
+    @Override
     public double kantitatea() {
         return 0.0;
     }
 
+    @Override
     public String toString() {
         try {
             return ObjetuIkuskatzailea.toString(this);

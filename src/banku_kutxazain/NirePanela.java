@@ -38,9 +38,7 @@ public class NirePanela extends JPanel implements ActionListener {
         gehituKontrolak();
         try {
             jbInit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
 
     }
 
@@ -268,5 +266,9 @@ public class NirePanela extends JPanel implements ActionListener {
 
     private void jbInit() throws Exception {
         testuEremuaGordailua.setSize(new Dimension(486, 300));
+    }
+    
+    public Kontua getKontua() {
+        return this.kontua;
     }
 }

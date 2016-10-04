@@ -1,7 +1,5 @@
 package banku_kutxazain;
 
-import java.util.*;
-
 public class KontuNagusia {
 
     //private HashMap bezeroak;

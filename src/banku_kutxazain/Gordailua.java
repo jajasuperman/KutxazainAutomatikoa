@@ -2,7 +2,7 @@ package banku_kutxazain;
 
 import java.util.Date;
 
-public class Gordailua extends Transakzioa {
+public final class Gordailua extends Transakzioa {
 
     private double kantitatea;
 
@@ -13,13 +13,14 @@ public class Gordailua extends Transakzioa {
         //temp = this.getAzkenTransakzioarenZenbakia();
         temp = KontuDatuBasea.instantzia().irakurriHasierakoTransakzioZenbakia();
         temp++;
-        this.setAzkenTransakzioarenZenbakia(temp);
+        Gordailua.setAzkenTransakzioarenZenbakia(temp);
         //  Idatzi
         this.setTransakzioZenbakia(temp);
         this.setKantitatea(kantitateBat);
         this.setData(new Date());
     }
 
+    @Override
     public double kantitatea() {
         return this.getKantitatea();
     }
@@ -32,6 +33,7 @@ public class Gordailua extends Transakzioa {
         this.kantitatea = kantitateBerria;
     }
 
+    @Override
     public String toString() {
         try {
             return ObjetuIkuskatzailea.toString(this);

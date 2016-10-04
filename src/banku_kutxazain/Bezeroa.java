@@ -2,7 +2,7 @@ package banku_kutxazain;
 
 import java.util.HashMap;
 
-public class Bezeroa {
+public final class Bezeroa {
 
     private long telefonoZenbakia;
     private String izena;
@@ -61,6 +61,7 @@ public class Bezeroa {
         this.telefonoZenbakia = telefonoZenbakiBerria;
     }
 
+    @Override
     public String toString() {
         try {
             return ObjetuIkuskatzailea.toString(this);

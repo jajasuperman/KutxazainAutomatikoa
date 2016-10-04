@@ -1,9 +1,9 @@
 package banku_kutxazain;
 
-import java.util.*;
 import java.text.*;
+import java.util.*;
 
-public class Kontua {
+public final class Kontua {
 
     private int kontuZenbakia;
     private double saldoZaharra;
@@ -30,7 +30,7 @@ public class Kontua {
     public Gordailua eginGordailua(double kantitateBat) {
         // Deklarazioak
         Transakzioa transakzioa;
-        int transakzioZenbakia, kontuZenbakia;
+        int transakzioZenbakia, kontuZenbaki;
         double kantitatea;
         Date data;
         String mota;
@@ -41,11 +41,11 @@ public class Kontua {
         // SQL taulan sartu Transakzioa
         transakzioZenbakia = transakzioa.getTransakzioZenbakia();
         data = transakzioa.getData();
-        kontuZenbakia = this.getKontuZenbakia();
+        kontuZenbaki = this.getKontuZenbakia();
         kantitatea = transakzioa.kantitatea();
         mota = new String(transakzioa.getClass().getName().substring(16, transakzioa.getClass().getName().length()));
         System.out.println("gordailua :" + transakzioa);
-        KontuDatuBasea.instantzia().sartuTransakzioa(transakzioZenbakia, kontuZenbakia, data, kantitatea, mota);
+        KontuDatuBasea.instantzia().sartuTransakzioa(transakzioZenbakia, kontuZenbaki, data, kantitatea, mota);
         // Irteera
         return (Gordailua) transakzioa;
     }
@@ -53,7 +53,7 @@ public class Kontua {
     public Kontsulta eginKontsulta() {
         // Deklarazioak
         Transakzioa transakzioa;
-        int transakzioZenbakia, kontuZenbakia;
+        int transakzioZenbakia, kontuZenbaki;
         double kantitatea;
         Date data;
         String mota;
@@ -64,11 +64,11 @@ public class Kontua {
         // SQL taulan sartu Transakzioa
         transakzioZenbakia = transakzioa.getTransakzioZenbakia();
         data = transakzioa.getData();
-        kontuZenbakia = this.getKontuZenbakia();
+        kontuZenbaki = this.getKontuZenbakia();
         kantitatea = 0.0;
         mota = new String(transakzioa.getClass().getName().substring(16, transakzioa.getClass().getName().length()));
         System.out.println("kontsulta :" + transakzioa);
-        KontuDatuBasea.instantzia().sartuTransakzioa(transakzioZenbakia, kontuZenbakia, data, kantitatea, mota);
+        KontuDatuBasea.instantzia().sartuTransakzioa(transakzioZenbakia, kontuZenbaki, data, kantitatea, mota);
         // Irteera
         return (Kontsulta) transakzioa;
     }
@@ -76,7 +76,7 @@ public class Kontua {
     public DiruAteratze ateraDirua(double kantitateBat) {
         // Deklarazioak
         Transakzioa transakzioa;
-        int transakzioZenbakia, kontuZenbakia;
+        int transakzioZenbakia, kontuZenbaki;
         double kantitatea;
         Date data;
         String mota;
@@ -87,11 +87,11 @@ public class Kontua {
         // SQL taulan sartu Transakzioa
         transakzioZenbakia = transakzioa.getTransakzioZenbakia();
         data = transakzioa.getData();
-        kontuZenbakia = this.getKontuZenbakia();
+        kontuZenbaki = this.getKontuZenbakia();
         kantitatea = transakzioa.kantitatea();
         mota = new String(transakzioa.getClass().getName().substring(16, transakzioa.getClass().getName().length()));
         System.out.println("diruateratzea:" + transakzioa);
-        KontuDatuBasea.instantzia().sartuTransakzioa(transakzioZenbakia, kontuZenbakia, data, kantitatea, mota);
+        KontuDatuBasea.instantzia().sartuTransakzioa(transakzioZenbakia, kontuZenbaki, data, kantitatea, mota);
         // Irteera
         return (DiruAteratze) transakzioa;
     }
@@ -125,6 +125,7 @@ public class Kontua {
         this.transakzioak = transakzioBerria;
     }
 
+    @Override
     public String toString() {
         // Delarations
         Iterator iterator;

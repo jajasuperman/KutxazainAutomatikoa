@@ -4,7 +4,7 @@ package banku_kutxazain;
 // Function:	Bigarren mailaren kontrolatzailea edo Facade
 import java.text.*;
 
-public class Kutxazaina {
+public final class Kutxazaina {
 
     private KontuNagusia kontuNagusia;
     private Bezeroa bezero;
@@ -40,10 +40,10 @@ public class Kutxazaina {
 
     public DiruAteratze sartuDirua(double kantitateBat) {
         Transakzioa transakzioa;
-        double kutxazainSaldoa;
-        kutxazainSaldoa = this.getKutxazainSaldoa();
-        kutxazainSaldoa -= kantitateBat;
-        this.setKutxazainSaldoa(kutxazainSaldoa);
+        double kutxazainSaldo;
+        kutxazainSaldo = this.getKutxazainSaldoa();
+        kutxazainSaldo -= kantitateBat;
+        this.setKutxazainSaldoa(kutxazainSaldo);
         transakzioa = this.getKontua().ateraDirua(kantitateBat);
         //  System.out.println("DiruAteratze is:" + transakzioa);
         return (DiruAteratze) transakzioa;
@@ -73,6 +73,7 @@ public class Kutxazaina {
         this.kutxazainSaldoa = kutxazainSaldoBerria;
     }
 
+    @Override
     public String toString() {
         //  Decarations
         NumberFormat numberFormat;

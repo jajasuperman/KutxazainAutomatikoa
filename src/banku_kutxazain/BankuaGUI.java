@@ -2,11 +2,9 @@ package banku_kutxazain;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.*;
 
 class BankuaGUI extends JFrame {
 
@@ -17,8 +15,9 @@ class BankuaGUI extends JFrame {
         font = font.deriveFont(Font.PLAIN, 15);
         setUIFont(new javax.swing.plaf.FontUIResource(font));
         setTitle(izenburua);
-        setSize(425, 350);
+        //setSize(425, 350);
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent anEvent) {
                 // Irteeratik kontu nagusi guztia ikuskapenerako
                 //System.out.println(nirePanela.getKutxazain().toString());
@@ -26,10 +25,12 @@ class BankuaGUI extends JFrame {
             }
         });
 
+        
         contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
-        contentPane.add(new NirePanela(), BorderLayout.WEST);
-        contentPane.add(new NireEgutegia(), BorderLayout.EAST);
+        contentPane.setBackground(new Color(144, 202, 249));
+        contentPane.setLayout(new GridLayout(1, 2));
+        contentPane.add(new NirePanela());
+        contentPane.add(new NireEgutegia(this));
 
         pack();
     }
@@ -41,9 +42,7 @@ class BankuaGUI extends JFrame {
     public BankuaGUI() {
         try {
             jbInit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
 
     }
 
@@ -60,5 +59,5 @@ class BankuaGUI extends JFrame {
                 UIManager.put(key, f);
             }
         }
-    }
+    }   
 }

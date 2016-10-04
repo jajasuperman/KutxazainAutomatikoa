@@ -51,6 +51,7 @@ public abstract class Transakzioa {
         this.transakzioZenbakia = transakzioZenbakiBerria;
     }
 
+    @Override
     public String toString() {
         try {
             return ObjetuIkuskatzailea.toString(this);
