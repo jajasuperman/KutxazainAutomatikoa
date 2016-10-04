@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,7 +22,7 @@ public class NireEgutegia extends JPanel implements ActionListener, DateListener
 
     private JComboBox hiriak, zinemak, pelikulak, orduak;
     private JCalendar egutegia;
-    private JButton ordainduBotoia;
+    private static JButton ordainduBotoia;
     private String hiria, zinema, pelikula;
     private JFrame framea;
     private SimpleDateFormat ft;
@@ -107,6 +106,7 @@ public class NireEgutegia extends JPanel implements ActionListener, DateListener
         JLabel ordainketaTestua = new JLabel("AUKERATU KONTUA ETA ORDAINDU: ");
         ordainduBotoia = new JButton("Ordaindu");
         ordainduBotoia.addActionListener(this);
+        ordainduBotoia.setEnabled(false);
         ordainketaPanela.add(ordainketaTestua);
         ordainketaPanela.add(ordainduBotoia);        
 
@@ -139,8 +139,7 @@ public class NireEgutegia extends JPanel implements ActionListener, DateListener
         }
         
         if (e.getSource() == ordainduBotoia) {
-            // TODO
-
+            NirePanela.getKontua().ordaindu(6.4);            
         }
         
     }
@@ -157,6 +156,7 @@ public class NireEgutegia extends JPanel implements ActionListener, DateListener
         if(egunArray.length == 0){
             orduakTestua.setText("PELIKULA EZ DA EGUN HONETAN EMANGO");
             orduak.setVisible(false);
+            ordainduBotoia.setEnabled(false);
         }
         else {
             orduakTestua.setText("ORDUA:");
@@ -165,5 +165,9 @@ public class NireEgutegia extends JPanel implements ActionListener, DateListener
         }
         
         framea.pack();
+    }
+    
+    public static void ordainduAktibatu(boolean pEgoera) {
+        ordainduBotoia.setEnabled(pEgoera);
     }
 }

@@ -95,6 +95,15 @@ public final class Kontua {
         // Irteera
         return (DiruAteratze) transakzioa;
     }
+    
+    public void ordaindu(double pPrezioa ) {
+        if(KontuDatuBasea.instantzia().pelikulaOrdaindu(kontuZenbakia, pPrezioa)) {
+            System.out.println("Ordaindu egin da");
+        }
+        else {
+            System.out.println("Ez duzu diru nahikorik");
+        }
+    }
 
     public double saldoBerria() {
         // Deklarazioak

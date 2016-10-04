@@ -20,7 +20,7 @@ public class NirePanela extends JPanel implements ActionListener {
     // Modeloak
     private Kutxazaina kutxazaina;
     private boolean bezero;
-    private Kontua kontua;
+    private static Kontua kontua;
     // Utilitatea
     private NumberFormat numberFormat;
 
@@ -63,7 +63,9 @@ public class NirePanela extends JPanel implements ActionListener {
                 testuEremuaKontuZenbakia.setEditable(false);
                 testuEremuaPinZenbakia.setEditable(false);
                 testuEremuaGordailua.setEditable(true);
-                testuEremuaDiruAteratzea.setEditable(true);                
+                testuEremuaDiruAteratzea.setEditable(true);     
+                
+                NireEgutegia.ordainduAktibatu(true);
                 
                 listaBezeroKontuak.setModel(new DefaultComboBoxModel(KontuDatuBasea.instantzia().kontsultatuKontuak(kontuZenbakia).toArray()));
                 
@@ -172,6 +174,7 @@ public class NirePanela extends JPanel implements ActionListener {
             testuEremuaPinZenbakia.setEditable(true);
             testuEremuaGordailua.setEditable(false);
             testuEremuaDiruAteratzea.setEditable(false);
+            NireEgutegia.ordainduAktibatu(false);
         }
     }
 
@@ -268,7 +271,7 @@ public class NirePanela extends JPanel implements ActionListener {
         testuEremuaGordailua.setSize(new Dimension(486, 300));
     }
     
-    public Kontua getKontua() {
-        return this.kontua;
+    public static Kontua getKontua() {
+        return NirePanela.kontua;
     }
 }

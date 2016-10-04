@@ -234,7 +234,7 @@ public class KontuDatuBasea {
         return pelikulak;
     }
     
-        public ArrayList<String> kontsultatuOrduak(String pHiria, String pZinema, String pPelikula, String pEguna) {
+    public ArrayList<String> kontsultatuOrduak(String pHiria, String pZinema, String pPelikula, String pEguna) {
         ArrayList<String> pelikulak = new ArrayList<>();
         String query = "Select Ordua from Egunak where HiriaIzena='" + pHiria + "' and ZinemaIzena='" + pZinema + "' and PelikulaIzena='" + pPelikula + "' and Eguna='" + pEguna + "'";
         ResultSet resultSet;
@@ -257,6 +257,39 @@ public class KontuDatuBasea {
         }
 
         return pelikulak;
+    }
+    
+    public boolean pelikulaOrdaindu(int pKontua, double pPrezioa) {
+        
+        String query = "Select Saldo_Zaharra from Kontua where Kontu_Zenbakia='" + pKontua + "'";
+        ResultSet resultSet;
+        
+        boolean ordainduDa = false;
+        double dirua = 0;
+
+        try {
+            // SQL exekutatu
+            resultSet = sententzia.executeQuery(query);
+            //	Resultset-eko errenkada eta zutabe guztiak kapturatu
+            while (resultSet.next()) {
+                dirua = resultSet.getDouble(1);
+            }
+            if(pPrezioa <= dirua) {
+                String query1 = "Update Kontua Set Saldo_Zaharra="+(dirua-pPrezioa)+" Where Kontu_Zenbakia='" + pKontua + "'";
+                sententzia.executeUpdate(query1);
+                ordainduDa = true;
+            }           
+            
+            resultSet.close();
+        } catch (SQLException anException) {
+            while (anException != null) {
+                System.out.println("SQL Exception:  " + anException.getMessage());
+                anException = anException.getNextException();
+            }
+        } catch (java.lang.Exception anException) {
+        }
+
+        return ordainduDa;
     }
 
     public void setKonekzioa(Connection konekzioBerria) {
