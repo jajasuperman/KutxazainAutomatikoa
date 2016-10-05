@@ -43,7 +43,7 @@ public class NireEgutegia extends JPanel implements ActionListener, DateListener
         JPanel tituluPanela = new JPanel();
         JTextPane titulua = new JTextPane();
         titulua.setContentType("text/html");
-        titulua.setText("<html><p style=\"text-align: center;\"><strong style=\"color: #5e9ca0;\">&nbsp;SARRERA-TXARTELA EROSI:</strong></p><br></html>");
+        titulua.setText("<html><p style=\"text-align: center;\"><strong style=\"color: #1976d2;\">&nbsp;SARRERA-TXARTELA EROSI:</strong></p><br></html>");
         titulua.setEditable(false);
         titulua.setBackground(null);
         titulua.setBorder(null);
@@ -162,6 +162,7 @@ public class NireEgutegia extends JPanel implements ActionListener, DateListener
             orduakTestua.setText("ORDUA:");
             orduak.setVisible(true);
             orduak.setModel(new DefaultComboBoxModel(egunArray));
+            ordainduBotoia.setEnabled(true);
         }
         
         framea.pack();
