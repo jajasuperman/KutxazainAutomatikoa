@@ -69,6 +69,7 @@ public final class Kontua {
         mota = new String(transakzioa.getClass().getName().substring(16, transakzioa.getClass().getName().length()));
         System.out.println("kontsulta :" + transakzioa);
         KontuDatuBasea.instantzia().sartuTransakzioa(transakzioZenbakia, kontuZenbaki, data, kantitatea, mota);
+        
         // Irteera
         return (Kontsulta) transakzioa;
     }
@@ -119,7 +120,7 @@ public final class Kontua {
             saldoBerria += transakzioa.kantitatea();
         }
         // Irteera
-        return saldoBerria;
+        return KontuDatuBasea.instantzia().kontsultatuDiruKontua(kontuZenbakia);
     }
 
     public void setKontuZenbakia(int kontuZenbakiBerria) {

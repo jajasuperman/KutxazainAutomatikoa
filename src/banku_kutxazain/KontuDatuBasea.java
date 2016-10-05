@@ -158,6 +158,30 @@ public class KontuDatuBasea {
 
         return kontua;
     }
+    
+    public double kontsultatuDiruKontua(int pId) {
+        double saldoZaharra = 0;
+        String query = "Select Saldo_Zaharra from Kontua where Kontu_Zenbakia=" + pId + "";
+        ResultSet resultSet;
+
+        try {
+            // SQL exekutatu
+            resultSet = sententzia.executeQuery(query);
+            //	Resultset-eko errenkada eta zutabe guztiak kapturatu
+            while (resultSet.next()) {
+                saldoZaharra = Double.parseDouble(resultSet.getString(1));
+            }
+            resultSet.close();
+        } catch (SQLException anException) {
+            while (anException != null) {
+                System.out.println("SQL Exception:  " + anException.getMessage());
+                anException = anException.getNextException();
+            }
+        } catch (java.lang.Exception anException) {
+        }
+
+        return saldoZaharra;
+    }
 
     public ArrayList<String> kontsultatuHiriak() {
         ArrayList<String> hiriak = new ArrayList<>();
