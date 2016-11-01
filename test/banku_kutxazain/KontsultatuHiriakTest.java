@@ -15,7 +15,7 @@ import org.junit.Test;
  *
  * @author Eneko
  */
-public class KontsultatuHiriak {
+public class KontsultatuHiriakTest {
     
     KontuDatuBasea datuBasea; 
     

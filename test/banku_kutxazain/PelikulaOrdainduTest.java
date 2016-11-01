@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  *
  * @author Eneko
  */
-public class PelikulaOrdaindu {  
+public class PelikulaOrdainduTest {  
     
     KontuDatuBasea datuBasea;
     

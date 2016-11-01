@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  * @author Eneko
  */
-public class KontsultatuBezeroak {
+public class KontsultatuBezeroakTest {
     
     KontuDatuBasea datuBasea; 
     
